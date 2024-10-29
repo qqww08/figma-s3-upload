@@ -1,0 +1,91 @@
+.container {
+    padding: 8px;
+}
+
+.tab {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    padding: 6px;
+    background-color: rgb(244, 244, 245);
+    border-radius: 6px;
+}
+
+.tab > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: rgb(9, 9, 11);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.tab > div.active {
+    font-weight: 500;
+    background-color: #fff;
+}
+
+.row {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+label {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgb(9, 9, 11);
+}
+
+input {
+    height: 40px;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid rgb(228, 228, 231);
+    padding: 6px;
+}
+
+input:focus {
+    outline: 1px solid #000;
+}
+
+button {
+    width: 100%;
+    font-size: 14px;
+    color: white;
+    border-radius: 6px;
+    margin-top: 16px;
+    height: 40px;
+    background-color: rgb(24, 24, 27);
+}
+
+.show {
+    cursor: pointer;
+    font-size: 14px;
+    border: 1px solid rgb(228, 228, 231);
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    &.active {
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    gap: 8px;
+}
