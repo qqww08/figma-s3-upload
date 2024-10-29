@@ -14,7 +14,7 @@ export type S3ClientType = {
     accessKeyId: string;
     secretAccessKey: string;
   };
-
+  folder: string;
   Bucket: string;
   region: string;
 };
@@ -46,6 +46,7 @@ function App() {
             },
             region: event.data.pluginMessage.config.region,
             Bucket: event.data.pluginMessage.config.Bucket,
+            folder: event.data.pluginMessage.config.folder,
           });
           setTab('Upload');
           break;
@@ -60,7 +61,11 @@ function App() {
           const { format } = event.data.pluginMessage;
           const params = {
             Bucket: s3ClientKey?.Bucket, // S3 버킷 이름
-            Key: `${event.data.pluginMessage.name}.${format || 'png'}`,
+            Key: s3ClientKey.folder
+              ? `${s3ClientKey.folder}/${event.data.pluginMessage.name}.${
+                  format || 'png'
+                }`
+              : `${event.data.pluginMessage.name}.${format || 'png'}`,
             Body: buffer, // 파일 데이터
             ContentType: format
               ? format === 'png'

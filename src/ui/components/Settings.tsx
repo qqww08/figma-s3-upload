@@ -40,7 +40,11 @@ function Settings({ s3ClientKey }: { s3ClientKey: S3ClientType }) {
       </div>
       <div className="row">
         <label>S3 Bucket Name</label>
-        <input {...register('Bucket')} placeholder="BucketName/folderName" />
+        <input {...register('Bucket')} />
+      </div>
+      <div className="row">
+        <label>S3 Bucket Folder</label>
+        <input {...register('folder')} />
       </div>
       <button>Save Settings</button>
     </form>
