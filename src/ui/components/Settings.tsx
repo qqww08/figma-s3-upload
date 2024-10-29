@@ -16,6 +16,7 @@ function Settings({ s3ClientKey }: { s3ClientKey: S3ClientType }) {
               accessKeyId: data.credentials.accessKeyId,
               secretAccessKey: data.credentials.secretAccessKey,
             },
+            folder: data.folder,
             region: data.region,
             Bucket: data.Bucket,
           },

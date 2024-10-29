@@ -8,19 +8,20 @@ function getLocalData(key) {
   return figma.clientStorage.getAsync(key);
 }
 function findAllImageFills(node) {
-  let fillsList = [];
+  const fillsList = [];
 
   // 현재 노드에 fills 필드가 있으면 type이 IMAGE인 항목만 추가
   if (node.fills && Array.isArray(node.fills)) {
+    console.log(node);
     fillsList.push({ nodeId: node.id, name: node.name });
   }
 
-  // children 필드가 있으면 반복적으로 하위 노드를 탐색
-  if (node.children && Array.isArray(node.children)) {
-    for (const child of node.children) {
-      fillsList = fillsList.concat(findAllImageFills(child));
-    }
-  }
+  // // children 필드가 있으면 반복적으로 하위 노드를 탐색
+  // if (node.children && Array.isArray(node.children)) {
+  //   for (const child of node.children) {
+  //     fillsList = fillsList.concat(findAllImageFills(child));
+  //   }
+  // }
 
   return fillsList;
 }
