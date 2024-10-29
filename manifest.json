@@ -1,5 +1,5 @@
 {
-  "name": "S3 Upload",
+  "name": "figma-s3-upload",
   "id": "1432994184625712771",
   "api": "1.0.0",
   "documentAccess": "dynamic-page",
@@ -7,6 +7,6 @@
     "allowedDomains": ["none"]
   },
   "main": "dist/plugin.js",
-  "editorType": ["figma", "figjam"],
+  "editorType": ["figma", "figjam","dev"],
   "ui": "dist/ui.html"
 }

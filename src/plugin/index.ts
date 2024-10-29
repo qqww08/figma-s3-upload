@@ -39,23 +39,19 @@ async function invertImages(node) {
   unit.push(node);
 }
 
-// 비동기 처리를 위한 for...of
 async function processQueue() {
-  let id = 0;
   getLocalData('S3').then((config) => {
     figma.ui.postMessage({ type: 'S3', config });
   });
   console.log('queue', queue);
   for (const node of queue) {
-    id++;
-    await invertImages(node, id);
+    await invertImages(node);
   }
   console.log('unit', unit);
 
   figma.ui.postMessage({ type: 'image', unit });
 }
 
-// 큐 처리 시작
 processQueue();
 
 figma.ui.onmessage = async (msg) => {
