@@ -4,9 +4,10 @@
   "api": "1.0.0",
   "documentAccess": "dynamic-page",
   "networkAccess": {
-    "allowedDomains": ["none"]
+    "allowedDomains": ["https://s3.ap-northeast-2.amazonaws.com"]
   },
   "main": "dist/plugin.js",
   "editorType": ["figma", "figjam","dev"],
+  "capabilities": ["inspect", "vscode"],
   "ui": "dist/ui.html"
 }

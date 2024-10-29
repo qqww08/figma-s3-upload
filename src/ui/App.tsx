@@ -69,7 +69,17 @@ function App() {
               : 'image/png',
           };
           const output = await s3Ref.current.send(new PutObjectCommand(params));
-
+          if (output.$metadata.httpStatusCode) {
+            parent.postMessage(
+              {
+                pluginMessage: {
+                  key: 'complete',
+                  data: '',
+                },
+              },
+              '*',
+            );
+          }
           break;
         }
         default:

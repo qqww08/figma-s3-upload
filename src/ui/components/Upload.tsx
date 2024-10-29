@@ -20,7 +20,7 @@ function Upload({ images }: { images: any }) {
 
   return (
     <form onSubmit={handleSubmit(uploadImageToS3)}>
-      <label>Name</label>
+      <label>Select all at once</label>
       <input
         style={{ marginTop: '8px' }}
         value={name}

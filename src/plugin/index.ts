@@ -12,10 +12,7 @@ function findAllImageFills(node) {
 
   // 현재 노드에 fills 필드가 있으면 type이 IMAGE인 항목만 추가
   if (node.fills && Array.isArray(node.fills)) {
-    const imageFills = node.fills.filter((fill) => fill.type === 'IMAGE');
-    if (imageFills?.[0]) {
-      fillsList.push({ nodeId: node.id, name: node.name });
-    }
+    fillsList.push({ nodeId: node.id, name: node.name });
   }
 
   // children 필드가 있으면 반복적으로 하위 노드를 탐색
@@ -41,7 +38,7 @@ async function invertImages(node) {
 
 async function processQueue() {
   getLocalData('S3').then((config) => {
-    figma.ui.postMessage({ type: 'S3', config });
+    if (config) figma.ui.postMessage({ type: 'S3', config });
   });
   console.log('queue', queue);
   for (const node of queue) {
@@ -54,15 +51,18 @@ async function processQueue() {
 
 processQueue();
 
+let tempCount = 0;
 figma.ui.onmessage = async (msg) => {
   switch (msg.key) {
     case 'S3':
       figma.clientStorage.setAsync('S3', msg.data);
+      figma.notify('S3 Setup Complete');
       break;
     case 'cancel':
       figma.closePlugin();
       break;
     case 'upload': {
+      tempCount = Number(msg.data.images.length);
       for (const node of msg.data.images) {
         const nodeBy = await figma.getNodeByIdAsync(node.nodeId);
         const pngBytes = await nodeBy.exportAsync({
@@ -77,10 +77,14 @@ figma.ui.onmessage = async (msg) => {
           buffer: pngBytes,
         });
       }
-
       break;
     }
-
+    case 'complete':
+      tempCount -= 1;
+      if (!tempCount) {
+        figma.closePlugin();
+      }
+      break;
     default:
       break;
   }
