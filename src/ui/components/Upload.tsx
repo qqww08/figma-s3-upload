@@ -89,6 +89,7 @@ function Upload({ images }: { images: any }) {
                     value={field.value.name}
                   />
                   <select
+                    value={field.value.value}
                     defaultValue="1"
                     onChange={(e) => {
                       field.onChange({ ...field.value, value: e.target.value });
@@ -103,6 +104,7 @@ function Upload({ images }: { images: any }) {
                     <option value="4">4x</option>
                   </select>
                   <select
+                    value={field.value.format}
                     defaultValue="PNG"
                     onChange={(e) => {
                       field.onChange({
