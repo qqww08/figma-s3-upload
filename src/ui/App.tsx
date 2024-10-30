@@ -74,6 +74,7 @@ function App() {
               : 'image/png',
           };
           const output = await s3Ref.current.send(new PutObjectCommand(params));
+          console.log(output);
           if (output.$metadata.httpStatusCode) {
             parent.postMessage(
               {

@@ -66,7 +66,7 @@ figma.ui.onmessage = async (msg) => {
       tempCount = Number(msg.data.images.length);
       for (const node of msg.data.images) {
         const nodeBy = await figma.getNodeByIdAsync(node.nodeId);
-        const pngBytes = await nodeBy.exportAsync({
+        const pngBytes = await (nodeBy as SceneNode).exportAsync({
           format: node.format || 'PNG',
           constraint: { type: 'SCALE', value: Number(node.value) || 2 },
         });
@@ -83,6 +83,7 @@ figma.ui.onmessage = async (msg) => {
     case 'complete':
       tempCount -= 1;
       if (!tempCount) {
+        figma.notify('업로드 성공');
         figma.closePlugin();
       }
       break;
