@@ -82,7 +82,12 @@ button {
         }
     }
 }
-
+.upload-header{
+    margin-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 2px solid rgb(228, 228, 231);
+}
 .input {
     display: flex;
     align-items: center;

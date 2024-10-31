@@ -87,6 +87,14 @@ figma.ui.onmessage = async (msg) => {
         figma.closePlugin();
       }
       break;
+    case 'image-focus': {
+      const nodeBy = (await figma.getNodeByIdAsync(
+        msg.data,
+      )) as unknown as SceneNode;
+      figma.viewport.scrollAndZoomIntoView([nodeBy]);
+      figma.currentPage.selection = [nodeBy];
+      break;
+    }
     default:
       break;
   }
