@@ -101,6 +101,7 @@ function Upload({ images }: { images: any }) {
                       borderWidth: '1px',
                       padding: 0,
                       flexShrink: 0,
+                      cursor: 'pointer',
                     }}
                     onClick={() => imageFocus(field.value.nodeId)}
                   >
